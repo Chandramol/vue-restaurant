@@ -38,16 +38,22 @@ export default {
   },
   methods: {
     async login() {
+      // Getting data and matching it from api and if matched then user can able to go home page
       let result = await axios.get(
         ` http://localhost:3000/user?name=${this.name}&password=${this.password}`
       );
-      if (result.status == 200) {
-        this.$router.push("/home");
-        localStorage.setItem("userInformation", JSON.stringify(result.data));
+      if (result.status == 200 && result.data.length>0) {
+        this.$router.push({path:"/home"});
+        localStorage.setItem("userInformation", JSON.stringify(result.data[0]));
       }
       console.log(result);
-      
-    },
+    }
   },
+  mounted(){
+    let store=localStorage.getItem("userInformation");
+    if(store){
+        this.$router.push({name:'Home'});
+    }
+  }
 };
 </script>

@@ -28,4 +28,7 @@ export default {
   border-radius: 20px;
   font-size: 18px;
 }
+h2{
+  color: aliceblue;
+}
 </style>

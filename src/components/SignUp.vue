@@ -38,6 +38,7 @@ export default {
     }
   },
   methods:{
+    // we are using async await to handle promise and api
     async signUp(){
         console.log(this.name,this.email,this.password,"bhjsh");
         let result = await axios.post(" http://localhost:3000/user",{
@@ -46,18 +47,20 @@ export default {
             password:this.password
         });
         console.log(result);
+
         if(result.status==201){
-            // alert("Successfully added");
             // we are redirecting to home page if status success 
-            this.$router.push('/home');
+            alert("You are succesfully registred...")
+            // this.$router.push('/home');
             localStorage.setItem("userInformation",JSON.stringify(result.data));
         }
     }
   },
   mounted(){
+    // we are getting signup details from localStorage and if there is any details then only can go to home page otherwise not
     let store=localStorage.getItem("userInformation");
     if(store){
-        this.$router.push('/home');
+        this.$router.push({name:'Home'});
     }
   }
 };

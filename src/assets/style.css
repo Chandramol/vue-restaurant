@@ -6,3 +6,6 @@
 body{
     background-color: antiquewhite;
 }
+h2,h1{
+    color: rgb(74, 134, 188) !important;
+}
